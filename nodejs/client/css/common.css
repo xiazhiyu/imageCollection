@@ -1,0 +1,65 @@
+#bg_pic, #photo_detail{
+	display: none;
+}
+.bg_pic_detail{
+	max-height: 90%;
+	max-width: 90%;
+	margin-top: 20px;
+	display: none;
+}
+#bg_pic{
+	background-color:white;
+	text-align: center;
+	position: fixed;
+	_position: absolute;   /*IE 6*/
+	_bottom:auto;top:
+	_expression(eval(document.documentElement.scrollTop));
+	_right:auto;
+	_left:expression(eval(document.documentElement.scrollLeft));
+	z-index: 100;
+	width: 100%;
+	_width: inherit;
+	height: 100%; 
+	top:0;
+	left: 0;
+}
+#bg_pic a.close_a, #bg_pic a.previous_a, #bg_pic a.next_a{
+	display: block;
+	/*background: url("images/sheying_wk.gif") no-repeat;		*/
+	height: 39px;
+	width: 40px;
+}
+#bg_pic a.pageUrl{
+	background-position: -76px 0;
+	float: right;
+	right: 10px;
+	top: 10px;
+	position: fixed;
+}
+#bg_pic a.previous_a,#bg_pic a.next_a {
+	position: fixed;
+
+	top: 40%;
+	
+}
+#bg_pic a.previous_a{
+	left: 10px;
+	background-position: 0px -38px;
+}
+#bg_pic a.previous_a:hover{
+	background-position: 0px -1px;
+}
+#bg_pic a.next_a{
+	right: 10px;
+	background-position: -38px -2px;
+}
+#bg_pic  a.next_a:hover {
+	background-position: -38px -39px;
+}
+#bg_pic a.close_a{
+	background-position: -76px 0;
+	float: right;
+	right: 10px;
+	bottom: 10px;
+	position: fixed;
+}

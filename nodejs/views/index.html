@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" ng-app>
+  <head>
+    <title>设计图片收集</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/waterfall.css">
+    <link rel="stylesheet" href="css/common.css">
+  </head>
+  <body>
+    <div id="container"></div>
+    <script type="text/x-handlebars-template" id="waterfall-tpl">
+      {{#result}}
+          <div class="item {{_id}}">
+              <img src="{{src}}" width="{{width}}" height="{{height}}" picId="{{_id}}" onClick="showDetailPhoto('{{_id}}','{{src}}', '{{pageUrl}}');"/>
+          </div>
+      {{/result}}
+    </script>
+    <div id="bg_pic">
+    	<img class="bg_pic_detail" />
+    </div>
+    <div id="photo_detail"></div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/handlebars.js"></script>
+    <script src="js/waterfall.min.js"></script>
+    <script>
+    var urls = location.href.split("/");
+    var key = urls[urls.length-1];
+    // alert(key);
+      $('#container').waterfall({
+          itemCls: 'item',
+          colWidth: 222,  
+          gutterWidth: 15,
+          gutterHeight: 15,
+          checkImagesLoaded: false,
+          // headers: {"key":key},
+          path: function(page) {
+            return key+'/json?page=' + page;
+              // return 'json';
+          }
+      });
+      
+      var imgClickEvent = function(_id){
+        console.log(_id);
+      }
+      function showDetailPhoto(_id, src, pageUrl){
+
+      // 	var indexid = $(pic).attr('indexid');
+      	//alert(src);
+      	var img = '<img src="'+src+'" onClick="javascript:closePicShow();" class="bg_pic_detail" _id='+_id+'/><a href="'+pageUrl+'" class="pageUrl" target="_blank">原站点</a>';
+      	$("#bg_pic").empty();
+      	$("#bg_pic").append(img);
+      // 	alert(key);
+      // 	if(document.body.classList.contains("myExt-visited")){
+      	if(document.body.getAttribute("key")==key){
+      	 // alert(document.body.getAttribute("key"));
+      	  $("#bg_pic").append('<a href="" class="close_a" onClick="javascript:deletePic(\''+_id+'\');">删除</a>');
+      	}
+      	$("#bg_pic").show();
+      	$(".bg_pic_detail").fadeIn(1000);
+      }
+      function closePicShow(){
+      	$("#bg_pic").fadeOut('slow');
+      }
+      function deletePic(_id){
+      	$.ajax({
+          type: "DELETE",
+          url: "/"+_id
+          // data: { _id: _id }
+        }).done(function( err) {
+          $('#container div.item.'+_id).remove();
+          $("#bg_pic").fadeOut('slow');
+          $('#container').waterfall('reLayout');
+          // alert(msg);
+        });
+      }
+    </script>
+  </body>
+</html>

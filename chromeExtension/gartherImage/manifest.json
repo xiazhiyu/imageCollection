@@ -1,0 +1,20 @@
+{
+  "name": "Gather Image",
+  "description": "Gather Image for you.",
+  "version": "1.1",
+  "permissions": ["contextMenus","tabs"],
+  "background": {
+    "scripts": ["getImg.js"]
+  },
+  "content_scripts": [{
+    "matches": ["https://fyg-xiazhiyu.c9.io/*"],
+    "js": ["content_script.js"]
+  }],
+  "options_page": "options.html",
+  "browser_action": {
+    "default_icon": "logo.png", // optional 
+    "default_title": "Get Image",      // optional; shown in tooltip 
+    "default_popup": "popup.html"        // optional 
+  },
+  "manifest_version": 2
+}
