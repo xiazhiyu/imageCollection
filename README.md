@@ -1,3 +1,3 @@
 # imageCollection
 类似pinterest的收集图片的服务
-参考https://fyg-xiazhiyu.c9.io/fyg
+DEMO https://fyg-xiazhiyu.c9.io/fyg
